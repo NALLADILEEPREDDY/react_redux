@@ -4,6 +4,7 @@ import NavBar from '../_components/navbar'
 import Home from '../_components/home'
 import PostDisplay from '../_components/PostsDisplay';
 import PostForm from '../_components/AddPost';
+import Post from '../_components/Post'; 
 import Page404 from '../_components/Page404';
 
 
@@ -16,6 +17,7 @@ export default class Routes extends Component{
                 <Route exact component={Home} path= '/home'/>
                 <Route exact component={PostForm} path= '/addpost' />
                 <Route exact component={PostDisplay} path= '/postsdisplay' />
+                <Route path='/:postId' exact component={Post} />
                 <Route exact component={Home} path='/' />
                 <Route component={Page404}/>
               </Switch>

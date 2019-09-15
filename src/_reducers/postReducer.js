@@ -1,4 +1,4 @@
-import {FETCH_POST, ADD_POST, DELETE_POST} from '../_actions/actiontypes'
+import {FETCH_POST, ADD_POST, DELETE_POST, FETCH_SINGLE_POST} from '../_actions/actiontypes'
 const intialState = {
     post : '',
     posts : []
@@ -20,6 +20,11 @@ export default function (state = intialState, action) {
             return {
                 ...state,
                 post : action.payload
+            }
+        case FETCH_SINGLE_POST:
+            return {
+                ...state,
+                post: action.payload
             }
         default:
             return state

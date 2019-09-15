@@ -17,6 +17,7 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import Button from '@material-ui/core/Button'
 import {connect} from 'react-redux';
 import {fetchPost, deletePost} from '../_actions/postActions';
+import {Link} from 'react-router-dom';
 
 const useStyles1 = makeStyles(theme => ({
   root: {
@@ -157,6 +158,7 @@ render() {
     overflowX: 'auto',
   },
 }));
+
     return (
     <Paper className={classes.root}>
       <div className={classes.tableWrapper}>
@@ -173,11 +175,14 @@ render() {
             {this.props.posts.slice(this.state.page * this.state.rowsPerPage, 
             this.state.page * this.state.rowsPerPage + this.state.rowsPerPage).map(post => (
               <TableRow key={post.id}>
-                <TableCell component="th" scope="row">
-                  {post.id}
+                <TableCell  scope="row">
+                  <Link to={'/' + post.id} 
+                    style={{ textDecoration: 'none', color: 'inherit' }}>
+                    {post.id}
+                  </Link>
                 </TableCell>
                 <TableCell align="right">{post.title}</TableCell>
-                <TableCell align="right">{post.body.toString()}</TableCell>
+                <TableCell align="right">{post.body}</TableCell>
                 <TableCell align="right">
                 <Button 
                   type='submit' 

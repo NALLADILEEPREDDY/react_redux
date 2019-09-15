@@ -1,4 +1,5 @@
-import {FETCH_POST, ADD_POST ,DELETE_POST} from './actiontypes'
+import {FETCH_POST, ADD_POST ,DELETE_POST,FETCH_SINGLE_POST} from './actiontypes'
+
 
 export const fetchPost = () => dispatch => {
     fetch('https://jsonplaceholder.typicode.com/posts')
@@ -44,4 +45,19 @@ export const fetchPost = () => dispatch => {
         })
       ).then(console.log('deleted'));
     }
-    
+   export  const fetchSinglePost =(postId)=> dispatch =>{
+     fetch('https://jsonplaceholder.typicode.com/posts/'+postId,{
+       method:'GET',
+       headers: {
+        'content-type': 'application/json'
+      }
+     })
+     
+      .then(res => res.json())
+      .then(post =>
+        dispatch({
+          type: FETCH_SINGLE_POST,
+          payload: post
+        })
+      ).then(post => console.log(post));
+  };
