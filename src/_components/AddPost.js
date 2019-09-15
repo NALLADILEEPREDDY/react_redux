@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {PropTypes} from 'prop-types'
-import {AddPost} from '../_actions/postActions'
+import {addPost} from '../_actions/postActions'
 
 class PostForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name :'',
-            email :'',
+            id:101,
+            title :'',
             body :''
         }
         this.onChange = this.onChange.bind(this)
@@ -21,13 +21,13 @@ class PostForm extends Component {
     }
     onSubmit(e) {
         e.preventDefault();
-
         const post = {
-         name: this.state.title,
-         email: this.state.email,
+         id: this.state.id,
+         title: this.state.title,
          body: this.state.body
     };
-    this.props.AddPost(post)
+    this.props.addPost(post)
+    this.props.history.push('/postsdisplay')
 }
 
     
@@ -55,18 +55,18 @@ class PostForm extends Component {
         return (
             <div>
                 <form onSubmit={this.onSubmit}>
-                    <label>Name</label>
+                    <label>Id</label>
                     <input style={inputText}
                     type="text" 
-                    name="name" 
-                    value={this.state.name} 
+                    name="id" 
+                    value={this.state.id} 
                     onChange={this.onChange} />
 
-                    <label>Email</label>
+                    <label>Title</label>
                     <input style={inputText}
                     type="text"
-                    name="email" 
-                    value={this.state.email} 
+                    name="title" 
+                    value={this.state.title} 
                     onChange={this.onChange}/>
 
                     <label>Body</label>
@@ -83,6 +83,6 @@ class PostForm extends Component {
     }
 }
 PostForm.propTypes = {
-    AddPost: PropTypes.func.isRequired
+    addPost: PropTypes.func.isRequired
   };
-export default connect(null,{AddPost})(PostForm)
+export default connect(null,{addPost})(PostForm)

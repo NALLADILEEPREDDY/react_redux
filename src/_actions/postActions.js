@@ -1,4 +1,4 @@
-import {FETCH_POST, ADD_POST } from './actiontypes'
+import {FETCH_POST, ADD_POST ,DELETE_POST} from './actiontypes'
 
 export const fetchPost = () => dispatch => {
     fetch('https://jsonplaceholder.typicode.com/posts')
@@ -10,7 +10,8 @@ export const fetchPost = () => dispatch => {
         })
       );
   };
-  export const AddPost = postData => dispatch => {
+  export const addPost = postData => dispatch => {
+    console.log(postData)
     fetch('https://jsonplaceholder.typicode.com/posts', {
       method: 'POST',
       headers: {
@@ -26,3 +27,21 @@ export const fetchPost = () => dispatch => {
         })
       );
     }
+    
+    export const deletePost = postId  => dispatch => {
+      console.log('in delete')
+      console.log(postId)
+    fetch('https://jsonplaceholder.typicode.com/posts/postId', {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      .then(post =>
+        dispatch({
+          type: DELETE_POST,
+          payload: post
+        })
+      ).then(console.log('deleted'));
+    }
+    
